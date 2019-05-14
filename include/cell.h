@@ -11,10 +11,11 @@ class Cell
 {
     private:
         Coordinate position;
-        bool isAlive;
+        bool isAlive = false;
     public:
         bool GetStatus();
         Coordinate GetPosition();
+        void SetStatus(bool state);
 };
 
 #endif

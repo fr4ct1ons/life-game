@@ -14,7 +14,7 @@ class LifeGame
 
         void RenderGame();
     public:
-        LifeGame::LifeGame(size_t newWidth, size_t newHeight)
+        LifeGame(size_t newWidth, size_t newHeight)
         {
             width = newWidth;
             height = newHeight;
@@ -22,7 +22,7 @@ class LifeGame
             biosphere = new Cell*[height];
             for(size_t i = 0; i < height; i++)
                 biosphere[i] = new Cell[width];
-            
+            biosphere[1][2].SetStatus(true);
         }
 
         void SetRound();
