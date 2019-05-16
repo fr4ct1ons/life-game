@@ -1,8 +1,9 @@
-#ifndef LIFE_GAME_H
-#define LIFE_GAME_H
+//#ifndef LIFE_GAME_H
+//#define LIFE_GAME_H
 
+#pragma once
 #include "cell.h"
-#include<cstdlib>
+#include<iostream>
 
 class LifeGame
 {
@@ -11,8 +12,6 @@ class LifeGame
         bool gameOver = false;
         int turnCount = 0;
         size_t width, height;
-
-        void RenderGame();
     public:
         LifeGame(size_t newWidth, size_t newHeight)
         {
@@ -22,11 +21,19 @@ class LifeGame
             biosphere = new Cell*[height];
             for(size_t i = 0; i < height; i++)
                 biosphere[i] = new Cell[width];
-            biosphere[1][2].SetStatus(true);
-        }
 
+            for(size_t i = 0; i < height; i++)
+                for (size_t j = 0; j < width; j++)
+                {
+                    biosphere[i][j].SetPosition(i,j);
+                }
+        }
+        void TestGame();
+        void RenderGame();
         void SetRound();
+        bool GameOver();
+        Cell At(size_t y, size_t x);
 };
 
 
-#endif
+//#endif

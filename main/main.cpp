@@ -3,7 +3,9 @@
 int main(int argc, char const *argv[])
 {
     LifeGame newGame(4, 4);
-    newGame.SetRound();
+    newGame.TestGame();
+    newGame.RenderGame();
+    //newGame.SetRound();
 
     return 0;
 }
