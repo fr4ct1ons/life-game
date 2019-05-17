@@ -1,5 +1,7 @@
 //#ifndef CELL_H
 //#define CELL_h
+//Authors: Weverson and Gabriel
+
 #pragma once
 
 #include<cstdlib>
