@@ -1,6 +1,6 @@
 //#ifndef CELL_H
 //#define CELL_h
-//Authors: Weverson and Gabriel Lucena
+//! \authors: Weverson and Gabriel Lucena
 
 #pragma once
 
