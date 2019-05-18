@@ -13,6 +13,7 @@ class Life
         std::vector<Coordinate> live;
     public:
         Life( int nlin = 0, int ncol = 0 );
+        ~Life();
 
         void set_alive( std::vector<Coordinate> alive );
 
@@ -36,11 +37,3 @@ class Life
 };
 
 #endif
-
-
-
-//Para liberar:
-   /*for(n = 0; n < 10; n++) 
-      delete[] f[n]; 
-   
-   delete[] f;*/ 

@@ -10,6 +10,14 @@ Life::Life( int nlin, int ncol )
 			biosphere[i][j].set_position(i,j);
 }
 
+Life::~Life()
+{
+	for(int i = 0; i < nLin; i++) 
+      delete[] biosphere[i]; 
+   
+   	delete[] biosphere; 
+}
+
 void Life::set_alive( std::vector<Coordinate> alive )
 {
   	live = alive;
