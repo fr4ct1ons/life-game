@@ -24,8 +24,10 @@ class Life
 
         int living_neighbors( Coordinate );
 
-        void rule1( Cell );
-        void rule2( Cell );
+        // retornam true se o estado da celular mudar, e false c.c. 
+        bool rule1( Cell );
+        bool rule2( Cell );
+
         void rule3( Cell );
         void rule4( Cell );
 

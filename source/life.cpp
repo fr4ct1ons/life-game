@@ -50,17 +50,25 @@ int Life::living_neighbors( Coordinate coor )
 }
 
 //Se uma celula esta viva, mas o numero de vizinhos vivos e menor ou igual a um, na proxima geracao a celula morrera de solidao.
-void Life::rule1( Cell cell )
+bool Life::rule1( Cell cell )
 {
 	if( living_neighbors( cell.get_position() ) <= 1 )
+	{
 		cell.set_status_next_turn( false );
+		return true;
+	}
+	return false;	
 }
 
 //Se uma celula esta viva e tem quatro ou mais vizinhos vivos, na proxima geracao a celula morrera sufocada devido a superpopulacao
-void Life::rule2( Cell cell )
+bool Life::rule2( Cell cell )
 {
 	if( living_neighbors( cell.get_position() ) >= 4 )
+	{
 		cell.set_status_next_turn( false );
+		return true;
+	}
+	return false;
 }
 
 //Uma celula viva com dois ou tres vizinhos vivos, na proxima geracao permanecera viva.
@@ -68,6 +76,8 @@ void Life::rule3( Cell cell )
 {
 	if( cell.get_status() and (living_neighbors( cell.get_position() ) == 2 or living_neighbors( cell.get_position() ) == 3) )
 		cell.set_status_next_turn( true );
+	else
+		cell.set_status_next_turn( false );
 }
 
 // Se uma celula esta morta, entao na proxima geracao ela se tornara viva se possuir exatamente tres vizinhos vivos. Se possuir uma quantidade de vizinhos vivos diferente de tres, a celula permanecera morta
@@ -77,5 +87,18 @@ void Life::rule4( Cell cell )
 		cell.set_status_next_turn( true );
 }
 
-//void Life::update( void )
+void Life::update( void )
+{
+	//setando o proximo turno das células vivas
+	for( int i = 0; i < live.size(); i++ )
+	{
+		if( rule1( biosphere[live[i].x][live[i].y] ) )
+			continue;
+		else if ( rule2( biosphere[live[i].x][live[i].y] ) )
+			continue;
+		else	
+			rule3( biosphere[live[i].x][live[i].y] );
+	}
+
+}
 
