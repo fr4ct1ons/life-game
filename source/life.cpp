@@ -14,7 +14,7 @@ Life::~Life()
 {
 	for(int i = 0; i < nLin; i++) 
       delete[] biosphere[i]; 
-   
+
    	delete[] biosphere; 
 }
 
