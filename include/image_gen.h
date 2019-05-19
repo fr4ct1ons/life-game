@@ -5,6 +5,7 @@
 using byte = unsigned char;
 
 namespace imgen{
+
     class Image
     {
         private: 
