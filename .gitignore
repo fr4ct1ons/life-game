@@ -25,3 +25,8 @@
 *.la
 *.a
 *.lib
+
+
+# Extra files
+*.ppm
+ValgrindOut.txt
