@@ -1,8 +1,15 @@
 #include"image_gen.h"
+#include"interface.h"
 
 int main(int argc, char const *argv[])
 {
-    imgen::Image testImage(3,3, 10);
+
+    size_t blockSize = 10;
+    std::string outputFolder("");
+
+    AssertInitialization(argc, argv, &blockSize, &outputFolder);
+
+    imgen::Image testImage(3, 3, blockSize);
     size_t testVal = testImage.GetBlockSize();
 
     testImage.PaintBlock(0 * testVal,0 * testVal,255,0,0);
@@ -15,8 +22,8 @@ int main(int argc, char const *argv[])
     testImage.PaintBlock(1 * testVal,2 * testVal,127,127,127);
     testImage.PaintBlock(2 * testVal,2 * testVal,0,0,0);
     
-
-    testImage.SaveFile("Test.ppm");
+    std::string fileName("Test.ppm");
+    testImage.SaveFile(outputFolder + fileName);
 
     std::cout << "All done! Closing app" << std::endl;
     return 0;
