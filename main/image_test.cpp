@@ -15,6 +15,8 @@ int main(int argc, char const *argv[])
     testImage.SetPixel(2,2,0,0,0);
 
     testImage.SaveFile("Test.ppm");
+
+    std::cout << "All done! Closing app" << std::endl;
     return 0;
 }
 
