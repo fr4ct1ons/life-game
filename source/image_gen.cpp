@@ -43,6 +43,8 @@ Image::~Image()
     //std::cout << "Deleted image successfully" << std::endl;
 }
 
+size_t Image::GetBlockSize(){ return blockSize; }
+
 void Image::SetPixel(size_t xPos, size_t yPos, byte R, byte G, byte B)
 {
     data[yPos][xPos][0] = R;
@@ -71,4 +73,15 @@ void Image::SaveFile(std::string fileName)
     }
     //std::cout << "closing file "<< std::endl;
     file.close();
+}
+
+void Image::PaintBlock(size_t xInit, size_t yInit, byte R, byte G, byte B)
+{
+    for (size_t i = 0; i < blockSize; i++)
+    {
+        for (size_t j = 0; j < blockSize; j++)
+        {
+            SetPixel(xInit + j, yInit + i,R,G,B);
+        }
+    }
 }
