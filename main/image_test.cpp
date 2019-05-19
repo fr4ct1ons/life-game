@@ -2,7 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
-    Image testImage(3,3, 10);
+    imgen::Image testImage(3,3, 10);
     size_t testVal = testImage.GetBlockSize();
 
     testImage.PaintBlock(0 * testVal,0 * testVal,255,0,0);
