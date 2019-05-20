@@ -7,7 +7,7 @@ void life_game::update( void )
 
 void life_game::render( void )
 {
-	std::cout << "geração " << turn_count+1 << << actual_gen << std::endl;
+	std::cout << "geração " << turn_count+1 << "\n" << actual_gen << std::endl;
 }
 
 bool life_game::game_over( void )
