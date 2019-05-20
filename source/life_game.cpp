@@ -7,7 +7,7 @@ void life_game::update( void )
 
 void life_game::render( void )
 {
-	//TODO
+	std::cout << "geração " << turn_count+1 << << actual_gen << std::endl;
 }
 
 bool life_game::game_over( void )
@@ -35,4 +35,20 @@ bool life_game::stable( void )
 		}
 	}
 	return false;
+}
+
+std::ostream& operator<<( std::ostream& os, const Life& gen )
+{
+	for( int i = 0; i < (gen.nLin-2); i++ )
+	{
+		for( int j = 0; j < (gen.nCol-2); j++)
+		{
+			if( gen.biosphere[i+1][j+1].get_status )
+				os << life_char;
+			else
+				os << "-";
+		}
+		os << std::endl;
+	}
+	return os;
 }

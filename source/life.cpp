@@ -90,7 +90,7 @@ void Life::update( void )
 			biosphere[i+1][j+1].att();
 }
 
-std::ostream& operator<<( std::ostream& os, const Life& gen )
+/*std::ostream& operator<<( std::ostream& os, const Life& gen )
 {
 	for( int i = 0; i < (gen.nLin-2); i++ )
 	{
@@ -104,7 +104,7 @@ std::ostream& operator<<( std::ostream& os, const Life& gen )
 		os << std::endl;
 	}
 	return os;
-}
+}*/
 
 bool operator==( Coordinate a, Coordinate b )
 {
