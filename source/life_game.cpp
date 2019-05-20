@@ -3,6 +3,7 @@
 void life_game::update( void )
 {
 	actual_gen.update();
+	generations.push_back(actual_gen);
 }
 
 void life_game::render( void )
