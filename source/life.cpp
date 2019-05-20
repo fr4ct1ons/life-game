@@ -22,7 +22,7 @@ void Life::set_alive( std::vector<Coordinate> alive )
 {
   	live = alive;
   	for( int i = 0; i < alive.size(); i++ )
- 	biosphere[alive[i].x + 1][alive[i].y + 1].set_life(true); 
+ 		biosphere[alive[i].x + 1][alive[i].y + 1].set_life(true); 
 }
 // CALCULA O NUMERO DE VIZINHAS VIVAS DE UMA CELULA
 int Life::living_neighbors( Coordinate coor )
@@ -85,10 +85,18 @@ void Life::update( void )
 		}
 
 	//aplicando o update
+	std::vector<Coordinates> alive;
 	for( int i = 0; i < (nLin-2); i++ )
 		for( int j = 0; j < (nCol-2); j++ )
+		{
 			biosphere[i+1][j+1].att();
+			if( biosphere[i+1][j+1].get_status() )
+				alive.push_back( biosphere[i+1][j+1].position );
+		}
+	
+	live = alive;
 }
+	
 
 /*std::ostream& operator<<( std::ostream& os, const Life& gen )
 {
