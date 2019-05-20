@@ -2,15 +2,17 @@
 #define LIFE_GAME_H
 
 #include "life.h"
+#include<string>
 
 class life_game{
 	private:
-		std::vector<std::vector<Coordinate>> generations;
-		Life actual_gen;
+		std::vector< std::vector<Coordinate> > generations;
+		Life *actual_gen;
 		int turn_count = 0;
 		int max_gen;
-		char life_char;
 	public:
+		life_game(std::string filename);
+
 		void initializer();
 
 		void update( void );
@@ -21,4 +23,4 @@ class life_game{
 
 		bool stable( void );
 };
-#endif;
+#endif

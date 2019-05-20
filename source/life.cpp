@@ -1,4 +1,6 @@
 #include "life.h"
+
+
 Life::Life( int nlin, int ncol )
 	: nLin{nlin+2}, nCol{ncol+2}
 {
@@ -77,21 +79,21 @@ void Life::update( void )
 	for( int i = 0; i < nLin-2; i++ )
 		for( int j = 0; j < nCol-2; j++)
 		{
-			int ln = living_neighbors( biosphere[i+1][j+1].position );
+			int ln = living_neighbors( biosphere[i+1][j+1].get_position() );
 			if( biosphere[i+1][j+1].get_status )
-				biosphere[i+1][j+1] = rule1(ln) and rule2(ln) and rule3(ln);
+				biosphere[i+1][j+1].set_life( rule1(ln) and rule2(ln) and rule3(ln));
 			else
-				biosphere[i+1][j+1] = rule4(ln);
+				biosphere[i+1][j+1].set_life(rule4(ln));
 		}
 
 	//aplicando o update
-	std::vector<Coordinates> alive;
+	std::vector<Coordinate> alive;
 	for( int i = 0; i < (nLin-2); i++ )
 		for( int j = 0; j < (nCol-2); j++ )
 		{
 			biosphere[i+1][j+1].att();
 			if( biosphere[i+1][j+1].get_status() )
-				alive.push_back( biosphere[i+1][j+1].position );
+				alive.push_back( biosphere[i+1][j+1].get_position() );
 		}
 	
 	live = alive;
@@ -119,7 +121,7 @@ bool operator==( Coordinate a, Coordinate b )
   return ((a.x == b.x) and (a.y == b.y));
 }
 
-bool operator==( const Life & lhs, const Life & rhs )
+bool operator==( Life & lhs, Life & rhs )
 {
 	return lhs.get_alive() == rhs.get_alive();
 } 

@@ -3,6 +3,7 @@
 
 #include "cell.h"
 #include <vector>
+#include<iostream>
 
 class Life
 {
@@ -16,6 +17,9 @@ class Life
         ~Life();
 
         void set_alive( std::vector<Coordinate> alive );
+        int get_nLin(){return nLin; }
+        int get_nCol(){return nCol; }
+        Cell & get_biosphere(int i, int j) { return biosphere[i][j]; }
 
         std::vector<Coordinate> get_alive( void )
         { return live; }
@@ -32,7 +36,7 @@ class Life
         bool extinct( void )
         { return live.empty(); }
 
-        friend std::ostream& operator<<( std::ostream& os, const Life& gen );
+        friend std::ostream & operator<<( std::ostream& os, const Life& gen );
 
 };
 

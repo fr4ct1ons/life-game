@@ -1,11 +1,19 @@
 #include"life_game.h"
+#include<string>
 
 int main(int argc, char const *argv[])
 {
-    LifeGame newGame(4, 4);
-    newGame.TestGame();
-    newGame.RenderGame();
-    //newGame.SetRound();
+
+    std::string inputcfg;
+
+    life_game myGame(inputcfg);
+
+    while (myGame.game_over())
+    {
+        myGame.update();
+        myGame.render();
+    }
+    
 
     return 0;
 }
