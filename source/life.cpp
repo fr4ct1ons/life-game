@@ -27,8 +27,6 @@ void Life::set_alive( std::vector<Coordinate> alive )
 // CALCULA O NUMERO DE VIZINHAS VIVAS DE UMA CELULA
 int Life::living_neighbors( Coordinate coor )
 {
-	coor.x++;
-	coor.y++;
 	int count = 0;
 	if(	biosphere[coor.x][coor.y-1].get_status() )//esquerda
 		count++;
@@ -50,55 +48,72 @@ int Life::living_neighbors( Coordinate coor )
 }
 
 //Se uma celula esta viva, mas o numero de vizinhos vivos e menor ou igual a um, na proxima geracao a celula morrera de solidao.
-bool Life::rule1( Cell cell )
+bool Life::rule1( int ln )
 {
-	if( living_neighbors( cell.get_position() ) <= 1 )
-	{
-		cell.set_status_next_turn( false );
-		return true;
-	}
-	return false;	
+	return not(ln <= 1); 
 }
 
 //Se uma celula esta viva e tem quatro ou mais vizinhos vivos, na proxima geracao a celula morrera sufocada devido a superpopulacao
-bool Life::rule2( Cell cell )
+bool Life::rule2( int ln )
 {
-	if( living_neighbors( cell.get_position() ) >= 4 )
-	{
-		cell.set_status_next_turn( false );
-		return true;
-	}
-	return false;
+	return not(ln >= 4);
 }
 
 //Uma celula viva com dois ou tres vizinhos vivos, na proxima geracao permanecera viva.
-void Life::rule3( Cell cell )
+bool Life::rule3( int ln )
 {
-	if( cell.get_status() and (living_neighbors( cell.get_position() ) == 2 or living_neighbors( cell.get_position() ) == 3) )
-		cell.set_status_next_turn( true );
-	else
-		cell.set_status_next_turn( false );
+	return (ln == 2 or ln == 3);
 }
 
 // Se uma celula esta morta, entao na proxima geracao ela se tornara viva se possuir exatamente tres vizinhos vivos. Se possuir uma quantidade de vizinhos vivos diferente de tres, a celula permanecera morta
-void Life::rule4( Cell cell )
+bool Life::rule4( int ln )
 {
-	if( not(cell.get_status()) and living_neighbors( cell.get_position() ) == 3 )
-		cell.set_status_next_turn( true );
+	return ln==3;
 }
 
 void Life::update( void )
 {
 	//setando o proximo turno das células vivas
-	for( int i = 0; i < live.size(); i++ )
-	{
-		if( rule1( biosphere[live[i].x][live[i].y] ) )
-			continue;
-		else if ( rule2( biosphere[live[i].x][live[i].y] ) )
-			continue;
-		else	
-			rule3( biosphere[live[i].x][live[i].y] );
-	}
+	for( int i = 0; i < nLin-2; i++ )
+		for( int j = 0; j < nCol-2; j++)
+		{
+			int ln = living_neighbors( biosphere[i+1][j+1].position );
+			if( biosphere[i+1][j+1].get_status )
+				biosphere[i+1][j+1] = rule1(ln) and rule2(ln) and rule3(ln);
+			else
+				biosphere[i+1][j+1] = rule4(ln);
+		}
 
+	//aplicando o update
+	for( int i = 0; i < (nLin-2); i++ )
+		for( int j = 0; j < (nCol-2); j++ )
+			biosphere[i+1][j+1].att();
 }
+
+std::ostream& operator<<( std::ostream& os, const Life& gen )
+{
+	for( int i = 0; i < (gen.nLin-2); i++ )
+	{
+		for( int j = 0; j < (gen.nCol-2); j++)
+		{
+			if( gen.biosphere[i+1][j+1].get_status )
+				os << "*";
+			else
+				os << "-";
+		}
+		os << std::endl;
+	}
+	return os;
+}
+
+bool operator==( Coordinate a, Coordinate b )
+{
+  return ((a.x == b.x) and (a.y == b.y));
+}
+
+bool operator==( const Life & lhs, const Life & rhs )
+{
+	return lhs.get_alive() == rhs.get_alive();
+} 
+
 

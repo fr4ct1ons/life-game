@@ -1,41 +1,38 @@
-#include"life_game.h"
+#include "life_game.h"
 
-void LifeGame::SetRound()
+void life_game::update( void )
 {
-    for(size_t i = 0; i < height; i++)
-    {
-        for (size_t j = 0; j < width; j++)
-        {
-            biosphere[i][j].AssertLife;
-        }
-    }
+	actual_gen.update();
 }
 
-void LifeGame::RenderGame()
+void life_game::render( void )
 {
-    for (size_t i = 0; i < height; i++)
-    {
-        for (size_t j = 0; j < width; j++)
-        {
-            if(biosphere[i][j].GetStatus())
-                std::cout << "[#]";
-            else
-                std::cout << "[ ]";
-        }
-        std::cout << "\n";
-    }
-    
-    std::cout << std::flush;
+	//TODO
 }
 
-void LifeGame::TestGame()
+bool life_game::game_over( void )
 {
-    biosphere[1][1].SetStatus(true);
-    biosphere[1][2].SetStatus(true);
-    biosphere[2][2].SetStatus(true);
+	if( actual_gen.extinct() )
+		return true;
+	if( stable() )
+	{
+		std::cout << "Detectada estabilidade, geração atual igual a geração " << turn_count+1 << std::endl;
+		return true;
+	}
+	if( turn_count == max_gen )
+		return true
+	turn_count++;
+	return false;
 }
 
-Cell LifeGame::At(size_t y, size_t x)
-{
-    return biosphere[y][x];
+bool life_game::stable( void )
+{	
+	for( int i = 0; i < generations.size(); i++ )
+	{
+		if( actual_gen.get_alive() == generations[i] )
+		{
+			return true;
+		}
+	}
+	return false;
 }

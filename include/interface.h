@@ -37,6 +37,7 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
         else if((std::string)argv[i] == "--blocksize")
         {
             *blockSize = atoi(argv[i + 1]);
+            std::cout << "Set block size" << std::endl;
         }
         else if((std::string)argv[i] == "--bkgcolor")
         {

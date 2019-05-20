@@ -34,10 +34,7 @@ class Cell
             position.x = x;
             position.y = y;
         }
-
-        
-        //void AssertLife(LifeGame *game);
-        //int SurroundingCellsAlive(LifeGame *game);
+        void att( void ){ isAlive = nextTurn; }
 };
 
 #endif

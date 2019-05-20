@@ -24,17 +24,15 @@ class Life
 
         int living_neighbors( Coordinate );
 
-        // retornam true se o estado da celular mudar, e false c.c. 
-        bool rule1( Cell );
-        bool rule2( Cell );
-
-        void rule3( Cell );
-        void rule4( Cell );
-
-        bool stable( void );
+        bool rule1( int );
+        bool rule2( int );
+        bool rule3( int );
+        bool rule4( int );
 
         bool extinct( void )
         { return live.empty(); }
+
+        friend std::ostream& operator<<( std::ostream& os, const Life& gen );
 
 };
 

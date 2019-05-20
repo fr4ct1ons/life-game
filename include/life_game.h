@@ -1,39 +1,24 @@
-//#ifndef LIFE_GAME_H
-//#define LIFE_GAME_H
+#ifndef LIFE_GAME_H
+#define LIFE_GAME_H
 
-#pragma once
-#include "cell.h"
-#include<iostream>
+#include "life.h"
 
-class LifeGame
-{
-    private:
-        Cell **biosphere;
-        bool gameOver = false;
-        int turnCount = 0;
-        size_t width, height;
-    public:
-        LifeGame(size_t newWidth, size_t newHeight)
-        {
-            width = newWidth;
-            height = newHeight;
+class life_game{
+	private:
+		std::vector<std::vector<Coordinate>> generations;
+		Life actual_gen;
+		int turn_count = 0;
+		int max_gen;
+		char life_char;
+	public:
+		void initializer();
 
-            biosphere = new Cell*[height];
-            for(size_t i = 0; i < height; i++)
-                biosphere[i] = new Cell[width];
+		void update( void );
 
-            for(size_t i = 0; i < height; i++)
-                for (size_t j = 0; j < width; j++)
-                {
-                    biosphere[i][j].SetPosition(i,j);
-                }
-        }
-        void TestGame();
-        void RenderGame();
-        void SetRound();
-        bool GameOver();
-        Cell At(size_t y, size_t x);
+		bool game_over( void );
+
+		void render( void );
+
+		bool stable( void );
 };
-
-
-//#endif
+#endif;
