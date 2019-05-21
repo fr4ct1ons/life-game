@@ -27,7 +27,7 @@ class Life
 
         void update( void );
 
-        int living_neighbors( Coordinate );
+        int living_neighbors( int,int );
 
         bool rule1( int );
         bool rule2( int );

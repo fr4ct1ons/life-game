@@ -44,32 +44,33 @@ void Life::set_alive( void )
 }
 
 // CALCULA O NUMERO DE VIZINHAS VIVAS DE UMA CELULA
-int Life::living_neighbors( Coordinate coor )
+int Life::living_neighbors( int x, int y )
 {
 	int count = 0;
-	if(	biosphere[coor.x][coor.y-1].get_status() )//esquerda
+	if(	biosphere[x][y-1].get_status() )//esquerda
 		count++;
 
-	if( biosphere[coor.x][coor.y+1].get_status() )//direita
+	if( biosphere[x][y+1].get_status() )//direita
 		count++;
 
-	if( biosphere[coor.x-1][coor.y].get_status() )//cima
+	if( biosphere[x-1][y].get_status() )//cima
 		count++;
 
-	if( biosphere[coor.x+1][coor.y].get_status() )//baixo
+	if( biosphere[x+1][y].get_status() )//baixo
 		count++;
 
-	if( biosphere[coor.x-1][coor.y-1].get_status() )//canto superior esquerdo
+	if( biosphere[x-1][y-1].get_status() )//canto superior esquerdo
 		count++;
 
-	if( biosphere[coor.x+1][coor.y-1].get_status() )//canto inferior esquerdo
+	if( biosphere[x+1][y-1].get_status() )//canto inferior esquerdo
 		count++;
 
-	if( biosphere[coor.x-1][coor.y+1].get_status() )//canto superior direito
+	if( biosphere[x-1][y+1].get_status() )//canto superior direito
 		count++;
 
-	if( biosphere[coor.x+1][coor.y+1].get_status() )//canto inferior direito
+	if( biosphere[x+1][y+1].get_status() )//canto inferior direito
 		count++;
+
 
 	return count;
 }
@@ -105,11 +106,15 @@ void Life::update( void )
 	for( int i = 0; i < nLin-2; i++ )
 		for( int j = 0; j < nCol-2; j++)
 		{
-			ln = living_neighbors( biosphere[i+1][j+1].get_position() );
+			ln = living_neighbors( i+1, j+1 );
 			if( biosphere[i+1][j+1].get_status() )
 				biosphere[i+1][j+1].set_status_next_turn( rule1(ln) && rule2(ln) && rule3(ln));
 			else
-				biosphere[i+1][j+1].set_status_next_turn(rule4(ln));
+			{
+				if( i == 2 and j == 0)
+					std::cout << "LN :  >>>  : " << ln <<std::endl;
+				biosphere[i+1][j+1].set_status_next_turn(rule4(ln) );
+			}
 		}
 
 	//aplicando o update
