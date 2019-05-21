@@ -110,11 +110,7 @@ void Life::update( void )
 			if( biosphere[i+1][j+1].get_status() )
 				biosphere[i+1][j+1].set_status_next_turn( rule1(ln) && rule2(ln) && rule3(ln));
 			else
-			{
-				if( i == 2 and j == 0)
-					std::cout << "LN :  >>>  : " << ln <<std::endl;
 				biosphere[i+1][j+1].set_status_next_turn(rule4(ln) );
-			}
 		}
 
 	//aplicando o update
