@@ -2,8 +2,10 @@
 
 
 Life::Life( int nlin, int ncol )
-	: nLin{nlin+2}, nCol{ncol+2}
+	//: nLin{nlin+2}, nCol{ncol+2}
 {
+	nLin = nlin + 2;
+	nCol = ncol + 2;
 	biosphere = new Cell*[nLin];
   	for( size_t i = 0; i < nLin; i++ )
   		biosphere[i] = new Cell[nCol];
@@ -80,10 +82,10 @@ void Life::update( void )
 		for( int j = 0; j < nCol-2; j++)
 		{
 			int ln = living_neighbors( biosphere[i+1][j+1].get_position() );
-			if( biosphere[i+1][j+1].get_status )
-				biosphere[i+1][j+1].set_life( rule1(ln) and rule2(ln) and rule3(ln));
+			if( biosphere[i+1][j+1].get_status() )
+				biosphere[i+1][j+1].set_status_next_turn( rule1(ln) && rule2(ln) && rule3(ln));
 			else
-				biosphere[i+1][j+1].set_life(rule4(ln));
+				biosphere[i+1][j+1].set_status_next_turn(rule4(ln));
 		}
 
 	//aplicando o update
@@ -116,14 +118,14 @@ void Life::update( void )
 	return os;
 }*/
 
-bool operator==( Coordinate a, Coordinate b )
+/*bool operator==(const Coordinate &lhs, const Coordinate &rhs)
 {
-  return ((a.x == b.x) and (a.y == b.y));
-}
+    return (lhs.x == rhs.x) && (lhs.y == rhs.y);
+}*/
 
-bool operator==( Life & lhs, Life & rhs )
+/*bool operator==( Life & lhs, Life & rhs )
 {
 	return lhs.get_alive() == rhs.get_alive();
-} 
-
+}
+*/
 

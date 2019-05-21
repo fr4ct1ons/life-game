@@ -7,10 +7,15 @@
 #include<cstdlib>
 //#include"life_game.h"
 
-typedef struct Coordinate
+class Coordinate
 {
-    unsigned int x, y;
-} Coordinate;
+    public:
+        unsigned int x, y;
+        bool operator==(const Coordinate &rhs)
+        {
+            return (x == rhs.x) && (y == rhs.y);
+        }
+};
 
 class Cell
 {
@@ -19,9 +24,9 @@ class Cell
         bool isAlive = false;
         bool nextTurn;
     public:
-        bool get_status( void ){ return isAlive; }
+        bool get_status( void ) const { return isAlive; }
 
-        Coordinate get_position( void ){ return position; }
+        Coordinate get_position( void ) const { return position; }
 
         void set_status(bool state){ isAlive = state; }
 

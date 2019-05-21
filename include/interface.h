@@ -1,6 +1,6 @@
 #include<string>
 #include<iostream>
-void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder)
+void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -20,6 +20,11 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
                       <<"Available colors: BLACK GRAY WHITE RED PURPLE BLUE CIAN GREEN YELLOW"
                       << std::endl;
             exit(0);
+        }
+        else if((std::string)argv[i] == "-input")
+        {
+            std::cout << "Set input as " << (std::string)argv[i+1] << std::endl;
+            *input = (std::string)argv[i+1];
         }
         else if((std::string)argv[i] == "--imgdir")
         {

@@ -21,9 +21,9 @@ life_game::life_game(std::string filename)
 	actual_gen = new Life(line, coll);
 
 	char buffer;
-	for (int i = 0; i < line; i++)
+	for (int i = 1; i < actual_gen->get_nLin(); i++)
 	{
-		for (int j = 0; j < coll; j++)
+		for (int j = 1; j < actual_gen->get_nCol(); j++)
 		{
 			file >> buffer;
 			if(buffer == live_char)
@@ -32,6 +32,18 @@ life_game::life_game(std::string filename)
 				actual_gen->get_biosphere(i, j).set_life(false);
 		}
 	}
+
+	//std::cout << actual_gen->get_nCol() << " " << actual_gen->get_nCol() << "\n";
+
+	for (int i = 1; i < actual_gen->get_nLin(); i++)
+	{
+		for (int j = 1; j < actual_gen->get_nCol(); j++)
+		{
+			std::cout << actual_gen->get_biosphere(i,j).get_status() << " ";
+		}
+		std::cout << "\n";
+	}
+	
 	
 	file.close();
 }
@@ -44,7 +56,7 @@ void life_game::update( void )
 
 void life_game::render( void )
 {
-	std::cout << "geração " << turn_count+1 << "\n" << actual_gen << std::endl;
+	std::cout << "geração " << turn_count+1 << "\n" << *actual_gen << std::endl;
 }
 
 bool life_game::game_over( void )
@@ -66,16 +78,18 @@ bool life_game::stable( void )
 {	
 	for( size_t i = 0; i < generations.size(); i++ )
 	{
-		if( actual_gen->get_alive() == generations[i] )
-		{
-			return true;
-		}
+		for( size_t j = 0; j < actual_gen->get_alive().size(); j++)
+			if( !(actual_gen->get_alive()[j] == generations[i][j]) )
+			{
+				break;
+			}
 	}
 	return false;
 }
 
-std::ostream& operator<<( std::ostream& os, Life& gen )
+std::ostream& operator<<( std::ostream& os, const Life& gen )
 {
+	//Life *gen = &gen2;
 	for( int i = 0; i < (gen.get_nLin()-2); i++ )
 	{
 		for( int j = 0; j < (gen.get_nCol()-2); j++)

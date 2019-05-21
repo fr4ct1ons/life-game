@@ -1,8 +1,7 @@
 #ifndef LIFE_GAME_H
 #define LIFE_GAME_H
-
-#include "life.h"
 #include<string>
+#include "life.h"
 
 class life_game{
 	private:

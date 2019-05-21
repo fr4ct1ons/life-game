@@ -1,14 +1,17 @@
 #include"life_game.h"
+#include"interface.h"
 #include<string>
 
 int main(int argc, char const *argv[])
 {
-
+    size_t blockSize = 10;
     std::string inputcfg;
-
+    std::string outputFolder("");
+    AssertInitialization(argc, argv, &blockSize, &outputFolder, &inputcfg);
     life_game myGame(inputcfg);
 
-    while (myGame.game_over())
+    myGame.render();
+    while (!myGame.game_over())
     {
         myGame.update();
         myGame.render();
