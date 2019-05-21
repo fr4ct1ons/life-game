@@ -16,20 +16,17 @@ life_game::life_game(std::string filename)
 	file >> line;
 	file >> coll;
 	file >> live_char;
-	file >> std::noskipws;
+	//file >> std::noskipws;
 
 	actual_gen = new Life(line, coll);
-
 	char buffer;
-	for (int i = 1; i < actual_gen->get_nLin(); i++)
+	for (int i = 0; i < line; i++)
 	{
-		for (int j = 1; j < actual_gen->get_nCol(); j++)
+		for (int j = 0; j < coll; j++)
 		{
 			file >> buffer;
 			if(buffer == live_char)
-				actual_gen->get_biosphere(i, j).set_life(true);
-			else
-				actual_gen->get_biosphere(i, j).set_life(false);
+				actual_gen->get_biosphere(i+1,j+1).set_life(true);
 		}
 	}
 
@@ -43,7 +40,8 @@ life_game::life_game(std::string filename)
 		}
 		std::cout << "\n";
 	}
-	set_alive();
+	actual_gen->set_alive();
+	generations.push_back( actual_gen->get_alive());
 	
 	
 	file.close();
@@ -63,10 +61,12 @@ void life_game::render( void )
 bool life_game::game_over( void )
 {
 	if( actual_gen->extinct() )
+	{
+		std::cout << "geração extinta" << std::endl;
 		return true;
+	}
 	if( stable() )
 	{
-		std::cout << "Detectada estabilidade, geração atual igual a geração " << std::endl;
 		return true;
 	}
 	if( turn_count == max_gen )
@@ -79,13 +79,24 @@ bool life_game::game_over( void )
 
 bool life_game::stable( void )
 {	
-	for( size_t i = 0; i < generations.size(); i++ )
+	if( generations.size() > 1 )
 	{
-		for( size_t j = 0; j < actual_gen->get_alive().size(); j++)
-			if( !(actual_gen->get_alive()[j] == generations[i][j]) )
-			{
-				break;
-			}
+		for( size_t i = 0; i < generations.size()-1; i++ )
+		{
+			if(	actual_gen->get_alive().size() == generations[i].size() )
+				for( size_t j = 0; j < actual_gen->get_alive().size()-1; j++ )
+				{
+					if( !(actual_gen->get_alive()[j] == generations[i][j]) )
+					{
+						break;
+					}
+					else if( j == actual_gen->get_alive().size()-2 )
+					{
+						std::cout << "ESTABILIDADE DETECTADA geração atual igual a geração " << i+1 <<std::endl;
+						return true;
+					}
+				}
+		}
 	}
 	return false;
 }
@@ -98,7 +109,7 @@ std::ostream& operator<<( std::ostream& os, const Life& gen )
 		for( int j = 0; j < (gen.get_nCol()-2); j++)
 		{
 			if( gen.get_biosphere(i+1, j+1).get_status() )
-				os << life_char << " ";
+				os << "#" << " ";
 			else
 				os << "-" << " ";
 		}

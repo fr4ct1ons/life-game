@@ -32,6 +32,7 @@ Life::~Life()
 void Life::set_alive( void )
 {
 	Coordinate coor;
+	live.clear();
   	for( int i = 0; i < nLin-2; i++ )
   		for( int j = 0; j < nCol-2; j++ )
 	 			if( biosphere[i + 1][j + 1].get_status() )
@@ -48,20 +49,28 @@ int Life::living_neighbors( Coordinate coor )
 	int count = 0;
 	if(	biosphere[coor.x][coor.y-1].get_status() )//esquerda
 		count++;
+
 	if( biosphere[coor.x][coor.y+1].get_status() )//direita
 		count++;
+
 	if( biosphere[coor.x-1][coor.y].get_status() )//cima
 		count++;
+
 	if( biosphere[coor.x+1][coor.y].get_status() )//baixo
 		count++;
+
 	if( biosphere[coor.x-1][coor.y-1].get_status() )//canto superior esquerdo
 		count++;
+
 	if( biosphere[coor.x+1][coor.y-1].get_status() )//canto inferior esquerdo
 		count++;
+
 	if( biosphere[coor.x-1][coor.y+1].get_status() )//canto superior direito
 		count++;
+
 	if( biosphere[coor.x+1][coor.y+1].get_status() )//canto inferior direito
 		count++;
+
 	return count;
 }
 
@@ -91,11 +100,12 @@ bool Life::rule4( int ln )
 
 void Life::update( void )
 {
+	int ln = 0;
 	//setando o proximo turno das células vivas
 	for( int i = 0; i < nLin-2; i++ )
 		for( int j = 0; j < nCol-2; j++)
 		{
-			int ln = living_neighbors( biosphere[i+1][j+1].get_position() );
+			ln = living_neighbors( biosphere[i+1][j+1].get_position() );
 			if( biosphere[i+1][j+1].get_status() )
 				biosphere[i+1][j+1].set_status_next_turn( rule1(ln) && rule2(ln) && rule3(ln));
 			else
@@ -108,11 +118,8 @@ void Life::update( void )
 		for( int j = 0; j < (nCol-2); j++ )
 		{
 			biosphere[i+1][j+1].att();
-			/*if( biosphere[i+1][j+1].get_status() )
-				alive.push_back( biosphere[i+1][j+1].get_position() );*/
 		}
-		set_alive();
-	
+		set_alive(); 
 	//live = alive;
 }
 	
