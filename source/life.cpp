@@ -22,12 +22,26 @@ Life::~Life()
    	delete[] biosphere; 
 }
 
-void Life::set_alive( std::vector<Coordinate> alive )
+/*void Life::set_alive( std::vector<Coordinate> alive )
 {
   	live = alive;
   	for( int i = 0; i < alive.size(); i++ )
  		biosphere[alive[i].x + 1][alive[i].y + 1].set_life(true); 
+}*/
+
+void Life::set_alive( void )
+{
+	Coordinate coor;
+  	for( int i = 0; i < nLin-2; i++ )
+  		for( int j = 0; j < nCol-2; j++ )
+	 			if( biosphere[i + 1][j + 1].get_status() )
+		 		{
+		 			coor.x = i;
+		 			coor.y = j;
+		 			live.push_back(coor); 
+		 		}
 }
+
 // CALCULA O NUMERO DE VIZINHAS VIVAS DE UMA CELULA
 int Life::living_neighbors( Coordinate coor )
 {
@@ -89,16 +103,17 @@ void Life::update( void )
 		}
 
 	//aplicando o update
-	std::vector<Coordinate> alive;
+	//std::vector<Coordinate> alive;
 	for( int i = 0; i < (nLin-2); i++ )
 		for( int j = 0; j < (nCol-2); j++ )
 		{
 			biosphere[i+1][j+1].att();
-			if( biosphere[i+1][j+1].get_status() )
-				alive.push_back( biosphere[i+1][j+1].get_position() );
+			/*if( biosphere[i+1][j+1].get_status() )
+				alive.push_back( biosphere[i+1][j+1].get_position() );*/
 		}
+		set_alive();
 	
-	live = alive;
+	//live = alive;
 }
 	
 

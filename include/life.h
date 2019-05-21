@@ -16,7 +16,8 @@ class Life
         Life( int nlin = 0, int ncol = 0 );
         ~Life();
 
-        void set_alive( std::vector<Coordinate> alive );
+        //void set_alive( std::vector<Coordinate> alive );
+        void set_alive( void );
         int get_nLin()const {return nLin; }
         int get_nCol()const {return nCol; }
         Cell & get_biosphere(int i, int j) const { return biosphere[i][j]; }

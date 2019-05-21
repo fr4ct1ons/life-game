@@ -43,6 +43,7 @@ life_game::life_game(std::string filename)
 		}
 		std::cout << "\n";
 	}
+	set_alive();
 	
 	
 	file.close();
@@ -65,12 +66,14 @@ bool life_game::game_over( void )
 		return true;
 	if( stable() )
 	{
-		std::cout << "Detectada estabilidade, geração atual igual a geração " << turn_count+1 << std::endl;
+		std::cout << "Detectada estabilidade, geração atual igual a geração " << std::endl;
 		return true;
 	}
 	if( turn_count == max_gen )
 		return true;
+	
 	turn_count++;
+
 	return false;
 }
 
@@ -95,9 +98,9 @@ std::ostream& operator<<( std::ostream& os, const Life& gen )
 		for( int j = 0; j < (gen.get_nCol()-2); j++)
 		{
 			if( gen.get_biosphere(i+1, j+1).get_status() )
-				os << "#" << " ";
+				os << life_char << " ";
 			else
-				os << "-" << " ";;
+				os << "-" << " ";
 		}
 		os << std::endl;
 	}
