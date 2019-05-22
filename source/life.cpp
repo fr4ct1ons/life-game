@@ -116,10 +116,12 @@ void Life::update( void )
 	//aplicando o update
 	//std::vector<Coordinate> alive;
 	for( int i = 0; i < (nLin-2); i++ )
+	{
 		for( int j = 0; j < (nCol-2); j++ )
 		{
 			biosphere[i+1][j+1].att();
 		}
+	}
 
 		set_alive(); 
 	//live = alive;
