@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-life_game::life_game(std::string filename, int maxGen)
+life_game::life_game(std::string filename, std::string folder, int maxGen, int img_blockSize)
 {
 	std::ifstream file(filename);
 	if(!file)
@@ -48,6 +48,8 @@ life_game::life_game(std::string filename, int maxGen)
 	*/
 	file.close();
 
+	img_gen = new imgen::Image(coll, line, img_blockSize);
+	img_folder = folder;
 	max_gen = maxGen;
 }
 
@@ -60,6 +62,20 @@ void life_game::update( void )
 void life_game::render( void )
 {
 	std::cout << "geração " << turn_count << "\n" << *actual_gen << std::endl;
+	int bSize = img_gen->GetBlockSize();
+	for(int i = 0; i < actual_gen->get_nLin() - 2; i++)
+	{
+		for(int j = 0; j < actual_gen->get_nCol() -2; j++)
+		{
+			//std::cout << "Pintando pixel em " << i * bSize << " " << j * bSize << std::endl;
+			if(actual_gen->get_biosphere(i + 1, j + 1).get_status())
+				img_gen->PaintBlock(j * bSize, i * bSize, 0, 0, 255);
+			else
+				img_gen->PaintBlock(j * bSize, i * bSize, 255, 255, 0);
+		}
+	}
+	
+	img_gen->SaveFile(img_folder + "life_game_" + std::to_string(turn_count) + ".pnm");
 }
 
 bool life_game::game_over( void )

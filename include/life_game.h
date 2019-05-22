@@ -2,6 +2,7 @@
 #define LIFE_GAME_H
 #include<string>
 #include "life.h"
+#include"image_gen.h"
 
 class life_game{
 	private:
@@ -9,8 +10,10 @@ class life_game{
 		Life *actual_gen;
 		int turn_count = 0;
 		int max_gen = 0;
+		imgen::Image *img_gen;
+		std::string img_folder;
 	public:
-		life_game(std::string filename, int maxGen = 0);
+		life_game(std::string filename, std::string folder, int maxGen = 0, int img_blockSize = 10);
 
 		void initializer();
 
