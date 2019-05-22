@@ -13,8 +13,9 @@ int main(int argc, char const *argv[])
     std::chrono::seconds fps(1);
     Color alive = {0, 0, 255};
     Color dead = {255, 255, 0};
-    AssertInitialization(argc, argv, &blockSize, &outputFolder, &inputcfg, &maxGen, &fps, &dead, &alive);
-    life_game myGame(inputcfg, outputFolder, dead, alive, /* DEFAULTS*/ maxGen, blockSize);
+    std::string outfile("");
+    AssertInitialization(argc, argv, &blockSize, &outputFolder, &inputcfg, &maxGen, &fps, &dead, &alive, &outfile);
+    life_game myGame(inputcfg, outputFolder, dead, alive, outfile, /* DEFAULTS*/ maxGen, blockSize);
 
     myGame.render();
     while (!myGame.game_over())

@@ -7,10 +7,10 @@ Life::Life( int nlin, int ncol )
 	nLin = nlin + 2;
 	nCol = ncol + 2;
 	biosphere = new Cell*[nLin];
-  	for( size_t i = 0; i < nLin; i++ )
+  	for( int i = 0; i < nLin; i++ )
   		biosphere[i] = new Cell[nCol];
-   	for(size_t i = 0; i < nLin; i++)
-		for (size_t j = 0; j < nCol; j++)
+   	for(int i = 0; i < nLin; i++)
+		for (int j = 0; j < nCol; j++)
 			biosphere[i][j].set_position(i,j);
 }
 
@@ -120,6 +120,7 @@ void Life::update( void )
 		{
 			biosphere[i+1][j+1].att();
 		}
+
 		set_alive(); 
 	//live = alive;
 }

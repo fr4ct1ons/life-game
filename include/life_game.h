@@ -17,10 +17,12 @@ class life_game{
 		int max_gen = 0;
 		imgen::Image *img_gen;
 		std::string img_folder;
+		std::string outfile;
+		std::ofstream outstream;
 		Color alive = {0, 0, 255};
 		Color dead = {255, 255, 0};
 	public:
-		life_game(std::string filename, std::string folder,Color dead, Color alive, int maxGen = 0, int img_blockSize = 10);
+		life_game(std::string filename, std::string folder,Color dead, Color alive, std::string outf, int maxGen = 0, int img_blockSize = 10);
 
 		void initializer();
 

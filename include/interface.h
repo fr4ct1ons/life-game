@@ -1,7 +1,7 @@
 #include<string>
 #include<iostream>
 #include<chrono>
-void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input, int *maxgen, std::chrono::seconds *duration, Color *dead, Color *alive)
+void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input, int *maxgen, std::chrono::seconds *duration, Color *dead, Color *alive, std::string *outfile)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -15,7 +15,7 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
                       <<"--maxgen <num>       ->    Maximum number of generations to simulate. \n"
                       <<"--fps <num>          ->    Number of generations to be presented per second. Default: 1 \n"
                       <<"--blocksize <num>    ->    Pixel size of a cell. Default: 10 \n"
-                      <<"--buffercolor <color>   ->    Color name for the background. Default: YELLOW \n"
+                      <<"--bkgcolor <color>   ->    Color name for the background. Default: YELLOW \n"
                       <<"--alivecolor <color> ->    Color name for representing alive cells. Default: BLUE \n"
                       <<"--outfile <filename> ->    Output filename for storing the text representations of the simulation. \n \n \n"
                       <<"Available colors: BLACK GRAY WHITE RED PURPLE BLUE CIAN GREEN YELLOW"
@@ -182,7 +182,8 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
         }
         else if((std::string)argv[i] == "--outfile")
         {
-            /* Code */
+            *outfile = (std::string)argv[i + 1];
+            std::cout << "Set output file to " << *outfile << std::endl;
         }
     }
     

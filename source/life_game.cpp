@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-life_game::life_game(std::string filename, std::string folder, Color newDead, Color newAlive, /* DEFAULTS*/ int maxGen, int img_blockSize)
+life_game::life_game(std::string filename, std::string folder, Color newDead, Color newAlive, std::string outf, /* DEFAULTS*/ int maxGen, int img_blockSize)
 {
 	std::ifstream file(filename);
 	if(!file)
@@ -54,6 +54,8 @@ life_game::life_game(std::string filename, std::string folder, Color newDead, Co
 	
 	file.close();
 
+	outfile = outf;
+	outstream.open(outfile);
 	alive = newAlive;
 	dead = newDead;
 	img_gen = new imgen::Image(coll, line, img_blockSize);
@@ -69,7 +71,7 @@ void life_game::update( void )
 
 void life_game::render( void )
 {
-	std::cout << "geração " << turn_count << "\n" << *actual_gen << std::endl;
+	std::cout << "Generation " << turn_count << ": \n" << *actual_gen << std::endl;
 	int bSize = img_gen->GetBlockSize();
 	for(int i = 0; i < actual_gen->get_nLin() - 2; i++)
 	{
@@ -82,7 +84,20 @@ void life_game::render( void )
 				img_gen->PaintBlock(j * bSize, i * bSize, dead.r, dead.g, dead.b);
 		}
 	}
+
+	//std::ofstream outf(outfile);
+	if(outstream)
+	{
+		//std::cout << "Opened file." << std::endl;
+		outstream << "Generation " << turn_count << ": \n" << *actual_gen << "\n";
+		//outf.close();
+	}
+	/*else
+	{
+		std::cout << "Could not open file. File name: " << outfile <<std::endl;
+	}*/
 	
+
 	img_gen->SaveFile(img_folder + "life_game_" + std::to_string(turn_count) + ".pnm");
 }
 
@@ -90,16 +105,19 @@ bool life_game::game_over( void )
 {
 	if( actual_gen->extinct() )
 	{
-		std::cout << "geração extinta" << std::endl;
+		std::cout << "Extinct generation, no more alive cells! Ending game." << std::endl;
+		outstream.close();
 		return true;
 	}
 	if( stable() )
 	{
+		outstream.close();
 		return true;
 	}
 	if( max_gen != 0 && turn_count == max_gen )
 	{
-		std::cout << "LIMITE DE GERAÇÃO ATINGIDO - Geração atual:  " << turn_count << std::endl;
+		std::cout << "GENERATION LIMIT GIT - Current geneation:  " << turn_count << std::endl;
+		outstream.close();
 		return true;
 	}
 	
@@ -123,7 +141,7 @@ bool life_game::stable( void )
 					}
 					else if( j == actual_gen->get_alive().size()-2 )
 					{
-						std::cout << "ESTABILIDADE DETECTADA geração atual igual a geração " << i+1 <<std::endl;
+						std::cout << "STABILITY DETECTED - Current generation equals to generation " << i+1 <<std::endl;
 						return true;
 					}
 				}
