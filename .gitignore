@@ -29,4 +29,6 @@ a.out
 
 # Extra files
 data/
+*.pnm
+*.pbm
 ValgrindOut.txt
