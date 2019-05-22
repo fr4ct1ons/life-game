@@ -20,4 +20,4 @@ Here are the following options you can use:
 
 
 ## Contact
-You can contact us at https://twitter.com/fr4ct1ons or https://github.com/fr4ct1ons/.
+You can contact me at https://twitter.com/fr4ct1ons or https://github.com/fr4ct1ons/.
