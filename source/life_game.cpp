@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-life_game::life_game(std::string filename, std::string folder, int maxGen, int img_blockSize)
+life_game::life_game(std::string filename, std::string folder, Color newDead, Color newAlive, /* DEFAULTS*/ int maxGen, int img_blockSize)
 {
 	std::ifstream file(filename);
 	if(!file)
@@ -41,19 +41,21 @@ life_game::life_game(std::string filename, std::string folder, int maxGen, int i
 
 	//std::cout << actual_gen->get_nCol() << " " << actual_gen->get_nCol() << "\n";
 	
-	for (int i = 1; i < actual_gen->get_nLin(); i++)
+	/*for (int i = 1; i < actual_gen->get_nLin(); i++)
 	{
 		for (int j = 1; j < actual_gen->get_nCol(); j++)
 		{
 			std::cout << actual_gen->get_biosphere(i,j).get_status() << " ";
 		}
 		std::cout << "\n";
-	}
+	}*/
 	actual_gen->set_alive();
 	generations.push_back( actual_gen->get_alive());
 	
 	file.close();
 
+	alive = newAlive;
+	dead = newDead;
 	img_gen = new imgen::Image(coll, line, img_blockSize);
 	img_folder = folder;
 	max_gen = maxGen;
@@ -75,9 +77,9 @@ void life_game::render( void )
 		{
 			//std::cout << "Pintando pixel em " << i * bSize << " " << j * bSize << std::endl;
 			if(actual_gen->get_biosphere(i + 1, j + 1).get_status())
-				img_gen->PaintBlock(j * bSize, i * bSize, 0, 0, 255);
+				img_gen->PaintBlock(j * bSize, i * bSize, alive.r, alive.g, alive.b);
 			else
-				img_gen->PaintBlock(j * bSize, i * bSize, 255, 255, 0);
+				img_gen->PaintBlock(j * bSize, i * bSize, dead.r, dead.g, dead.b);
 		}
 	}
 	
