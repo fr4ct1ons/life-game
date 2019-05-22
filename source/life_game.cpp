@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-life_game::life_game(std::string filename)
+life_game::life_game(std::string filename, int maxGen)
 {
 	std::ifstream file(filename);
 	if(!file)
@@ -31,7 +31,7 @@ life_game::life_game(std::string filename)
 	}
 
 	//std::cout << actual_gen->get_nCol() << " " << actual_gen->get_nCol() << "\n";
-
+	/*
 	for (int i = 1; i < actual_gen->get_nLin(); i++)
 	{
 		for (int j = 1; j < actual_gen->get_nCol(); j++)
@@ -42,9 +42,10 @@ life_game::life_game(std::string filename)
 	}
 	actual_gen->set_alive();
 	generations.push_back( actual_gen->get_alive());
-	
-	
+	*/
 	file.close();
+
+	max_gen = maxGen;
 }
 
 void life_game::update( void )
@@ -69,8 +70,11 @@ bool life_game::game_over( void )
 	{
 		return true;
 	}
-	if( turn_count == max_gen )
+	if( max_gen != 0 && turn_count == max_gen )
+	{
+		std::cout << "LIMITE DE GERAÇÃO ATINGIDO - Geração atual:  " << turn_count << std::endl;
 		return true;
+	}
 	
 	turn_count++;
 

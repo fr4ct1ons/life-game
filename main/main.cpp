@@ -7,7 +7,8 @@ int main(int argc, char const *argv[])
     size_t blockSize = 10;
     std::string inputcfg;
     std::string outputFolder("");
-    AssertInitialization(argc, argv, &blockSize, &outputFolder, &inputcfg);
+    int maxGen;
+    AssertInitialization(argc, argv, &blockSize, &outputFolder, &inputcfg, &maxGen);
     life_game myGame(inputcfg);
 
     myGame.render();

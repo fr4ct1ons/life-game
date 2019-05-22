@@ -1,6 +1,6 @@
 #include<string>
 #include<iostream>
-void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input)
+void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input, int *maxgen)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -33,7 +33,8 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
         }
         else if((std::string)argv[i] == "--maxgen")
         {
-            /* Code */
+            std::cout << "Set max generation as " << (std::string)argv[i+1] << std::endl;
+            *maxgen = atoi( argv[i + 1] );
         }
         else if((std::string)argv[i] == "--fps")
         {
