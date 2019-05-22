@@ -9,7 +9,7 @@ Authors: Gabriel Lucena (fr4ct1ons) and Weverson Paulo (Versinho)
 John Conway's Game of Life is a computational game consisting of various cells that are either alive or dead. That is determined by various rules. For checking each and every rule, please, read the [Wikipedia page on the game](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). 
 
 ## How to install
-Once you have downloaded the program's files, open the command-line (linux), switch to the directory containing the program's files and simply type ´make´ and it will compile the program.  
+Once you have downloaded the program's files, open the command-line (linux), switch to the directory containing the program's files and simply type `make` and it will compile the program.  
 Alternatively. you can compile it all by using the following command:  
 `g++ -std=C++11 -o lifesim source/image_gen.cpp source/life.cpp source/life_game.cpp main/main.cpp`  
 
