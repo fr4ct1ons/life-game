@@ -26,7 +26,10 @@ life_game::life_game(std::string filename, int maxGen)
 		{
 			file >> buffer;
 			if(buffer == live_char)
+			{
 				actual_gen->get_biosphere(i+1,j+1).set_life(true);
+				actual_gen->set_alive();
+			}
 		}
 	}
 
@@ -56,7 +59,7 @@ void life_game::update( void )
 
 void life_game::render( void )
 {
-	std::cout << "geração " << turn_count+1 << "\n" << *actual_gen << std::endl;
+	std::cout << "geração " << turn_count << "\n" << *actual_gen << std::endl;
 }
 
 bool life_game::game_over( void )
