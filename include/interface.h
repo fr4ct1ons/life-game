@@ -1,6 +1,7 @@
 #include<string>
 #include<iostream>
-void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input, int *maxgen)
+#include<chrono>
+void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input, int *maxgen, std::chrono::seconds *duration)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -12,7 +13,7 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
                       <<"-input <filename>    ->    Name of the file used for input. \n"
                       <<"--imgdir <path>      ->    Specify directory where output images are written to. Make sure that the folder exists.\n"
                       <<"--maxgen <num>       ->    Maximum number of generations to simulate. \n"
-                      <<"--fps <num>          ->    Number of generations to be presented per second. \n"
+                      <<"--fps <num>          ->    Number of generations to be presented per second. Default: 1 \n"
                       <<"--blocksize <num>    ->    Pixel size of a cell. Default: 10 \n"
                       <<"--bkgcolor <color>   ->    Color name for the background. Default: Green \n"
                       <<"--alivecolor <color> ->    Color name for representing alive cells. Default: Red \n"
@@ -38,7 +39,8 @@ void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::
         }
         else if((std::string)argv[i] == "--fps")
         {
-            /* Code */
+            std::cout << "Set FPS to " << argv[i + 1] << std::endl;
+            *duration = (std::chrono::seconds) atoi(argv[i + 1])/60; 
         }
         else if((std::string)argv[i] == "--blocksize")
         {

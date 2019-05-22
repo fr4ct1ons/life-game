@@ -16,25 +16,31 @@ life_game::life_game(std::string filename, std::string folder, int maxGen, int i
 	file >> line;
 	file >> coll;
 	file >> live_char;
-	//file >> std::noskipws;
+	file >> std::noskipws;
 
 	actual_gen = new Life(line, coll);
 	char buffer;
-	for (int i = 0; i < line; i++)
+	file >> buffer;
+	for (int i = 0; i < line + 1; i++)
 	{
-		for (int j = 0; j < coll; j++)
+		for (int j = 0; j < coll + 1; j++)
 		{
-			file >> buffer;
-			if(buffer == live_char)
+			if(file >> buffer)
 			{
-				actual_gen->get_biosphere(i+1,j+1).set_life(true);
+				if(buffer == live_char)
+					actual_gen->get_biosphere(i+1,j+1).set_life(true);
+				else if (buffer == '\n')
+					break;
+				else
+					actual_gen->get_biosphere(i+1,j+1).set_life(false);
+
 				actual_gen->set_alive();
 			}
 		}
 	}
 
 	//std::cout << actual_gen->get_nCol() << " " << actual_gen->get_nCol() << "\n";
-	/*
+	
 	for (int i = 1; i < actual_gen->get_nLin(); i++)
 	{
 		for (int j = 1; j < actual_gen->get_nCol(); j++)
@@ -45,7 +51,7 @@ life_game::life_game(std::string filename, std::string folder, int maxGen, int i
 	}
 	actual_gen->set_alive();
 	generations.push_back( actual_gen->get_alive());
-	*/
+	
 	file.close();
 
 	img_gen = new imgen::Image(coll, line, img_blockSize);
