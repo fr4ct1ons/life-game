@@ -1,6 +1,11 @@
 #include<string>
 #include<iostream>
 #include<chrono>
+
+//! Assert the terminal input
+/*! Reads the initialization options inserted by the user on the terminal and does something with then.
+    \author Gabriel Lucena (fr4ct1ons)
+    */
 void AssertInitialization(int argc, char const *argv[], size_t *blockSize, std::string * outputFolder, std::string *input, int *maxgen, std::chrono::seconds *duration, Color *dead, Color *alive, std::string *outfile)
 {
     for (int i = 1; i < argc; i++)

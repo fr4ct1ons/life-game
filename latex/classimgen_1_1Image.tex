@@ -1,0 +1,79 @@
+\hypertarget{classimgen_1_1Image}{}\section{imgen\+:\+:Image Class Reference}
+\label{classimgen_1_1Image}\index{imgen\+::\+Image@{imgen\+::\+Image}}
+
+
+\hyperlink{classimgen_1_1Image}{Image} generator class.  
+
+
+
+
+{\ttfamily \#include $<$image\+\_\+gen.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classimgen_1_1Image_a2b0df4a76f784a021e06878ac8dab896}\label{classimgen_1_1Image_a2b0df4a76f784a021e06878ac8dab896}} 
+\hyperlink{classimgen_1_1Image_a2b0df4a76f784a021e06878ac8dab896}{Image} (size\+\_\+t new\+Width, size\+\_\+t new\+Height, size\+\_\+t new\+Block\+Size=1)
+\begin{DoxyCompactList}\small\item\em Basic constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classimgen_1_1Image_a13a5785f551783b34c5be86b63d1e3c5}\label{classimgen_1_1Image_a13a5785f551783b34c5be86b63d1e3c5}} 
+\hyperlink{classimgen_1_1Image_a13a5785f551783b34c5be86b63d1e3c5}{$\sim$\+Image} ()
+\begin{DoxyCompactList}\small\item\em Basic destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classimgen_1_1Image_aff2f85c54d9d755e1b7ab32deb4d2b8d}\label{classimgen_1_1Image_aff2f85c54d9d755e1b7ab32deb4d2b8d}} 
+size\+\_\+t \hyperlink{classimgen_1_1Image_aff2f85c54d9d755e1b7ab32deb4d2b8d}{Get\+Block\+Size} ()
+\begin{DoxyCompactList}\small\item\em Returns the image\textquotesingle{}s block s. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classimgen_1_1Image_adb82c352d197513b9da66baac6e68663}\label{classimgen_1_1Image_adb82c352d197513b9da66baac6e68663}} 
+void \hyperlink{classimgen_1_1Image_adb82c352d197513b9da66baac6e68663}{Set\+Pixel} (size\+\_\+t x\+Pos, size\+\_\+t y\+Pos, byte R, byte G, byte B)
+\begin{DoxyCompactList}\small\item\em Sets a color on one pixel. \end{DoxyCompactList}\item 
+void \hyperlink{classimgen_1_1Image_a7da7330a2fadfa0cac8a52202826b89b}{Save\+File} (std\+::string file\+Name)
+\begin{DoxyCompactList}\small\item\em Saves the .pnm image. \end{DoxyCompactList}\item 
+void \hyperlink{classimgen_1_1Image_a8c7f6882a085f48d5361c907b4635839}{Paint\+Block} (size\+\_\+t x\+Init, size\+\_\+t y\+Init, byte R, byte G, byte B)
+\begin{DoxyCompactList}\small\item\em Paints a chunk of the image with the same size as block\+Size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classimgen_1_1Image}{Image} generator class. 
+
+Class used for generating a .pnm file. \begin{DoxyAuthor}{Author}
+Gabriel Lucena (fr4ct1ons) 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classimgen_1_1Image_a8c7f6882a085f48d5361c907b4635839}\label{classimgen_1_1Image_a8c7f6882a085f48d5361c907b4635839}} 
+\index{imgen\+::\+Image@{imgen\+::\+Image}!Paint\+Block@{Paint\+Block}}
+\index{Paint\+Block@{Paint\+Block}!imgen\+::\+Image@{imgen\+::\+Image}}
+\subsubsection{\texorpdfstring{Paint\+Block()}{PaintBlock()}}
+{\footnotesize\ttfamily void imgen\+::\+Image\+::\+Paint\+Block (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{x\+Init,  }\item[{size\+\_\+t}]{y\+Init,  }\item[{byte}]{R,  }\item[{byte}]{G,  }\item[{byte}]{B }\end{DoxyParamCaption})}
+
+
+
+Paints a chunk of the image with the same size as block\+Size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Init} & -\/ Initial X coordinate of the corner of where to paint the block \\
+\hline
+{\em y\+Init} & -\/ Initial Y coordinate of the corner of where to paint the block \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classimgen_1_1Image_a7da7330a2fadfa0cac8a52202826b89b}\label{classimgen_1_1Image_a7da7330a2fadfa0cac8a52202826b89b}} 
+\index{imgen\+::\+Image@{imgen\+::\+Image}!Save\+File@{Save\+File}}
+\index{Save\+File@{Save\+File}!imgen\+::\+Image@{imgen\+::\+Image}}
+\subsubsection{\texorpdfstring{Save\+File()}{SaveFile()}}
+{\footnotesize\ttfamily void imgen\+::\+Image\+::\+Save\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Saves the .pnm image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & -\/ Name of the file to save the image as. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/image\+\_\+gen.\+h\item 
+source/image\+\_\+gen.\+cpp\end{DoxyCompactItemize}

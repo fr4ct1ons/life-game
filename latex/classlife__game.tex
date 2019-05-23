@@ -1,0 +1,106 @@
+\hypertarget{classlife__game}{}\section{life\+\_\+game Class Reference}
+\label{classlife__game}\index{life\+\_\+game@{life\+\_\+game}}
+
+
+\hyperlink{classlife__game}{life\+\_\+game} class  
+
+
+
+
+{\ttfamily \#include $<$life\+\_\+game.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlife__game_a9fb79605e28ed5894c2608aba113b503}{life\+\_\+game} (std\+::string filename, std\+::string folder, \hyperlink{structColor}{Color} dead, \hyperlink{structColor}{Color} alive, std\+::string outf, int max\+Gen=0, int img\+\_\+block\+Size=10)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classlife__game_ad49f74d7d3f981a085ae71b2f85c9447}{update} (void)
+\begin{DoxyCompactList}\small\item\em Update method. \end{DoxyCompactList}\item 
+bool \hyperlink{classlife__game_a12e6be26d78ff4e230efbe265c59c877}{game\+\_\+over} (void)
+\begin{DoxyCompactList}\small\item\em Game over check. \end{DoxyCompactList}\item 
+void \hyperlink{classlife__game_a531eaaba274b4e9eee4df10244d631e5}{render} (void)
+\begin{DoxyCompactList}\small\item\em Render method. \end{DoxyCompactList}\item 
+bool \hyperlink{classlife__game_a51aec1198c8f5b41d910d90dd784f8bf}{stable} (void)
+\begin{DoxyCompactList}\small\item\em Stability check. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classlife__game}{life\+\_\+game} class 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlife__game_a9fb79605e28ed5894c2608aba113b503}\label{classlife__game_a9fb79605e28ed5894c2608aba113b503}} 
+\index{life\+\_\+game@{life\+\_\+game}!life\+\_\+game@{life\+\_\+game}}
+\index{life\+\_\+game@{life\+\_\+game}!life\+\_\+game@{life\+\_\+game}}
+\subsubsection{\texorpdfstring{life\+\_\+game()}{life\_game()}}
+{\footnotesize\ttfamily life\+\_\+game\+::life\+\_\+game (\begin{DoxyParamCaption}\item[{std\+::string}]{filename,  }\item[{std\+::string}]{folder,  }\item[{\hyperlink{structColor}{Color}}]{dead,  }\item[{\hyperlink{structColor}{Color}}]{alive,  }\item[{std\+::string}]{outf,  }\item[{int}]{max\+Gen = {\ttfamily 0},  }\item[{int}]{img\+\_\+block\+Size = {\ttfamily 10} }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+Starts an instance of Conway\textquotesingle{}s Game of \hyperlink{classLife}{Life}. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & -\/ Name of the file used for input of the game\textquotesingle{}s starting cells. \\
+\hline
+{\em folder} & -\/ Folder used for saving the images. \\
+\hline
+{\em dead} & -\/ \hyperlink{structColor}{Color} representing the dead cells. \\
+\hline
+{\em alive} & -\/ \hyperlink{structColor}{Color} representing the alive cells. \\
+\hline
+{\em outf} & -\/ File used for storing the game\textquotesingle{}s generation log. \\
+\hline
+{\em max\+Gen} & -\/ Limit of generations the program can have. \\
+\hline
+{\em img\+\_\+block\+Size} & -\/ Size of the block used to represent a cell, when rendering the images. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classlife__game_a12e6be26d78ff4e230efbe265c59c877}\label{classlife__game_a12e6be26d78ff4e230efbe265c59c877}} 
+\index{life\+\_\+game@{life\+\_\+game}!game\+\_\+over@{game\+\_\+over}}
+\index{game\+\_\+over@{game\+\_\+over}!life\+\_\+game@{life\+\_\+game}}
+\subsubsection{\texorpdfstring{game\+\_\+over()}{game\_over()}}
+{\footnotesize\ttfamily bool life\+\_\+game\+::game\+\_\+over (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Game over check. 
+
+Checks if the game is finished running. In this case, if stability was detected, there are no alive cells left or if the limit of generations was hit. \mbox{\Hypertarget{classlife__game_a531eaaba274b4e9eee4df10244d631e5}\label{classlife__game_a531eaaba274b4e9eee4df10244d631e5}} 
+\index{life\+\_\+game@{life\+\_\+game}!render@{render}}
+\index{render@{render}!life\+\_\+game@{life\+\_\+game}}
+\subsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily void life\+\_\+game\+::render (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Render method. 
+
+Renders the game state by printing in the terminal (and a file, if it was specified) the current game state and generates an image. \mbox{\Hypertarget{classlife__game_a51aec1198c8f5b41d910d90dd784f8bf}\label{classlife__game_a51aec1198c8f5b41d910d90dd784f8bf}} 
+\index{life\+\_\+game@{life\+\_\+game}!stable@{stable}}
+\index{stable@{stable}!life\+\_\+game@{life\+\_\+game}}
+\subsubsection{\texorpdfstring{stable()}{stable()}}
+{\footnotesize\ttfamily bool life\+\_\+game\+::stable (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Stability check. 
+
+Checks if the current generation is equal to a previous generation. \mbox{\Hypertarget{classlife__game_ad49f74d7d3f981a085ae71b2f85c9447}\label{classlife__game_ad49f74d7d3f981a085ae71b2f85c9447}} 
+\index{life\+\_\+game@{life\+\_\+game}!update@{update}}
+\index{update@{update}!life\+\_\+game@{life\+\_\+game}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void life\+\_\+game\+::update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Update method. 
+
+Creates a new generation. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/life\+\_\+game.\+h\item 
+source/life\+\_\+game.\+cpp\end{DoxyCompactItemize}

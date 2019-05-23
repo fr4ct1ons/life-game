@@ -1,0 +1,76 @@
+\hypertarget{classLife}{}\section{Life Class Reference}
+\label{classLife}\index{Life@{Life}}
+
+
+Game of \hyperlink{classLife}{Life}\textquotesingle{}s generation class.  
+
+
+
+
+{\ttfamily \#include $<$life.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLife_a67b9b114aeeef1672a1ab5535e1a965c}\label{classLife_a67b9b114aeeef1672a1ab5535e1a965c}} 
+\hyperlink{classLife_a67b9b114aeeef1672a1ab5535e1a965c}{Life} (int nlin=0, int ncol=0)
+\begin{DoxyCompactList}\small\item\em Basic constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_ac5a521e06906fb4f834001b2b4f7adc7}\label{classLife_ac5a521e06906fb4f834001b2b4f7adc7}} 
+\hyperlink{classLife_ac5a521e06906fb4f834001b2b4f7adc7}{$\sim$\+Life} ()
+\begin{DoxyCompactList}\small\item\em Basic destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_ad122838147a564f33fd75eabcba297db}\label{classLife_ad122838147a564f33fd75eabcba297db}} 
+void {\bfseries set\+\_\+alive} (void)
+\item 
+\mbox{\Hypertarget{classLife_a817a21572e8bce5138973a5a1eae2079}\label{classLife_a817a21572e8bce5138973a5a1eae2079}} 
+int \hyperlink{classLife_a817a21572e8bce5138973a5a1eae2079}{get\+\_\+n\+Lin} () const
+\begin{DoxyCompactList}\small\item\em Returns the amount of lines the generation has. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_ae5b1433f8af9f92230f8515df594b7b2}\label{classLife_ae5b1433f8af9f92230f8515df594b7b2}} 
+int \hyperlink{classLife_ae5b1433f8af9f92230f8515df594b7b2}{get\+\_\+n\+Col} () const
+\begin{DoxyCompactList}\small\item\em Returns the amount of collumns the generaion has. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a7e16602403239490489aea230642d334}\label{classLife_a7e16602403239490489aea230642d334}} 
+\hyperlink{classCell}{Cell} \& \hyperlink{classLife_a7e16602403239490489aea230642d334}{get\+\_\+biosphere} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classCell}{Cell}\textquotesingle{}s reference in the generation\textquotesingle{}s biosphere. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a347f895c89cfef9d5c74f5b549f2a8d5}\label{classLife_a347f895c89cfef9d5c74f5b549f2a8d5}} 
+std\+::vector$<$ \hyperlink{classCoordinate}{Coordinate} $>$ \hyperlink{classLife_a347f895c89cfef9d5c74f5b549f2a8d5}{get\+\_\+alive} (void)
+\begin{DoxyCompactList}\small\item\em Returns a std\+::vector with the coordinates of the live cells in the generation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a52846a7310d07423d3e03154f5c693f8}\label{classLife_a52846a7310d07423d3e03154f5c693f8}} 
+void \hyperlink{classLife_a52846a7310d07423d3e03154f5c693f8}{update} (void)
+\begin{DoxyCompactList}\small\item\em Creates a new generation, based on the rules of the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_ae1616d4b8f68527279610da101f4964c}\label{classLife_ae1616d4b8f68527279610da101f4964c}} 
+int \hyperlink{classLife_ae1616d4b8f68527279610da101f4964c}{living\+\_\+neighbors} (int, int)
+\begin{DoxyCompactList}\small\item\em Returns the amount of living neighbors among the passed parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a31350090246d57337c599b1ed3612f04}\label{classLife_a31350090246d57337c599b1ed3612f04}} 
+bool \hyperlink{classLife_a31350090246d57337c599b1ed3612f04}{rule1} (int)
+\begin{DoxyCompactList}\small\item\em Checks for Rule \#1 of the simulation, based on the passed parameters (the number of living neighbors). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a39af42ed3d213e996cf979eb902648fb}\label{classLife_a39af42ed3d213e996cf979eb902648fb}} 
+bool \hyperlink{classLife_a39af42ed3d213e996cf979eb902648fb}{rule2} (int)
+\begin{DoxyCompactList}\small\item\em Checks for Rule \#2 of the simulation, based on the passed parameters (the number of living neighbors). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a54f24025406f63cd2e0769d103aee1f5}\label{classLife_a54f24025406f63cd2e0769d103aee1f5}} 
+bool \hyperlink{classLife_a54f24025406f63cd2e0769d103aee1f5}{rule3} (int)
+\begin{DoxyCompactList}\small\item\em Checks for Rule \#3 of the simulation, based on the passed parameters (the number of living neighbors). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a09d1f42ec4c24dfe0ac4b9b7e39c3661}\label{classLife_a09d1f42ec4c24dfe0ac4b9b7e39c3661}} 
+bool \hyperlink{classLife_a09d1f42ec4c24dfe0ac4b9b7e39c3661}{rule4} (int)
+\begin{DoxyCompactList}\small\item\em Checks for Rule \#4 of the simulation, based on the passed parameters (the number of living neighbors). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLife_a237dd91f30013fb44acc367153dca88b}\label{classLife_a237dd91f30013fb44acc367153dca88b}} 
+bool \hyperlink{classLife_a237dd91f30013fb44acc367153dca88b}{extinct} (void)
+\begin{DoxyCompactList}\small\item\em Returns whether there are any live cells in the generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLife_a73fae2e719446b63959e359b90c2cc94}\label{classLife_a73fae2e719446b63959e359b90c2cc94}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classLife}{Life} \&gen)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Game of \hyperlink{classLife}{Life}\textquotesingle{}s generation class. 
+
+Class used for storing a generation of Conway\textquotesingle{}s Game of \hyperlink{classLife}{Life}. \begin{DoxyAuthor}{Author}
+Weverson Paulo (Versinho) 
+\end{DoxyAuthor}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/life.\+h\item 
+source/life.\+cpp\end{DoxyCompactItemize}
