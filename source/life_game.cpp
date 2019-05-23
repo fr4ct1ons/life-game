@@ -1,6 +1,7 @@
 #include "life_game.h"
 #include <iostream>
 #include <fstream>
+#include<string>
 
 life_game::life_game(std::string filename, std::string folder, Color newDead, Color newAlive, std::string outf, /* DEFAULTS*/ int maxGen, int img_blockSize)
 {
@@ -16,26 +17,27 @@ life_game::life_game(std::string filename, std::string folder, Color newDead, Co
 	file >> line;
 	file >> coll;
 	file >> live_char;
-	file >> std::noskipws;
+	//file >> std::noskipws;
 
 	actual_gen = new Life(line, coll);
-	char buffer;
-	file >> buffer;
+	std::string buffer;
+	//file >> buffer;
 	for (int i = 0; i < line + 1; i++)
 	{
-		for (int j = 0; j < coll + 1; j++)
+		if(std::getline(file, buffer));
 		{
-			if(file >> buffer)
+			for (size_t j = 0; j < buffer.size(); j++)
 			{
-				if(buffer == live_char)
-					actual_gen->get_biosphere(i+1,j+1).set_life(true);
-				else if (buffer == '\n')
-					break;
+				if(buffer[j] == live_char)
+				{
+					actual_gen->get_biosphere(i, j + 1).set_life(true);
+				}
 				else
-					actual_gen->get_biosphere(i+1,j+1).set_life(false);
-
-				actual_gen->set_alive();
+				{
+					actual_gen->get_biosphere(i, j + 1).set_life(false);
+				}
 			}
+			
 		}
 	}
 
