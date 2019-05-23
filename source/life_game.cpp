@@ -143,7 +143,7 @@ bool life_game::stable( void )
 					}
 					else if( j == actual_gen->get_alive().size()-2 )
 					{
-						std::cout << "STABILITY DETECTED - Current generation equals to generation " << i+1 <<std::endl;
+						std::cout << "STABILITY DETECTED - Current generation equals to generation " << i <<std::endl;
 						return true;
 					}
 				}
