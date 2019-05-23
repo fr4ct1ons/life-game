@@ -98,7 +98,7 @@ void life_game::render( void )
 	}*/
 	
 
-	img_gen->SaveFile(img_folder + "life_game_" + std::to_string(turn_count) + ".pnm");
+	img_gen->SaveFile(img_folder + "life_game_" + std::to_string(turn_count) + ".png");
 }
 
 bool life_game::game_over( void )

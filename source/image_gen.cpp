@@ -1,4 +1,5 @@
 #include"image_gen.h"
+#include"lodepng.h"
 
 namespace imgen{
     Image::Image(size_t newWidth, size_t newHeight, size_t newBlockSize)
@@ -14,9 +15,21 @@ namespace imgen{
             data[i] = new byte*[width];
             for (size_t j = 0; j < width; j++)
             {
-                data[i][j] = new byte[3];
+                data[i][j] = new byte[4];
             }
         }
+
+        for (int i = 0; i < height; i++)
+        {
+        	for (int j = 0; j < width; j++)
+        	{
+        		for (int k = 0; k < 4; k++)
+        		{
+        			/* code */
+        		}
+        	}
+        }
+        dataSolo = new byte[width * height * 4];
         //std::cout << "Instatntiated image. Size is [" << height - 1 << "] [" << height - 1 << "][2]" << std::endl;
     }
 
@@ -37,6 +50,7 @@ namespace imgen{
         //std::cout << "Deleted width sized array"<< std::endl;
         delete[] data;
         //std::cout << "Deleted everything"<< std::endl;
+        delete[] dataSolo;
 
         //delete &width;
         //std::cout << "Deleted width value"<< std::endl;
@@ -54,6 +68,7 @@ namespace imgen{
         //std::cout << "Placed pixel at [" << yPos << "] [" << xPos << "][1]" << std::endl;
         data[yPos][xPos][2] = B;
         //std::cout << "Placed pixel at [" << yPos << "] [" << xPos << "][2]" << std::endl;
+        data[yPos][xPos][3] = 255;
     }
 
     void Image::SaveFile(std::string fileName)
@@ -74,7 +89,31 @@ namespace imgen{
         }
         //std::cout << "closing file "<< std::endl;
         file.close();
+        //char nameChar[fileName.size()];
+        int buffer = 0;
+        for (int i = 0; i < height; i++)
+        {
+        	for (int j = 0; j < width; j++)
+        	{
+        		for (int k = 0; k < 4; k++)
+        		{
+        			dataSolo[buffer] = data[i][j][k];
+        			buffer++;
+        		}
+        	}
+        }
+
+        encode_png(fileName, dataSolo, width, height);
     }
+
+    void Image::encode_png(std::string filename, unsigned char * image, size_t width, size_t height)
+	{
+	    //Encode the image
+	    unsigned error = lodepng::encode(filename, image, width, height);
+
+	    //if there's an error, display it
+	    if(error) std::cout << "encoder error " << error << ": "<< lodepng_error_text(error) << std::endl;
+	}
 
     void Image::PaintBlock(size_t xInit, size_t yInit, byte R, byte G, byte B)
     {

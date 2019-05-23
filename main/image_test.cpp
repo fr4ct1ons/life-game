@@ -1,5 +1,5 @@
 #include"image_gen.h"
-#include"interface.h"
+//#include"interface.h"
 
 int main(int argc, char const *argv[])
 {
@@ -7,7 +7,7 @@ int main(int argc, char const *argv[])
     size_t blockSize = 10;
     std::string outputFolder("");
 
-    AssertInitialization(argc, argv, &blockSize, &outputFolder);
+    //AssertInitialization(argc, argv, &blockSize, &outputFolder);
 
     imgen::Image testImage(3, 3, blockSize);
     size_t testVal = testImage.GetBlockSize();

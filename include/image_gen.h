@@ -1,6 +1,7 @@
 #include<string>
 #include<fstream>
 #include<iostream>
+#include"lodepng.h"
 
 using byte = unsigned char;
 
@@ -15,6 +16,7 @@ namespace imgen{
             size_t width, height;
             size_t blockSize;
             byte ***data;
+            byte *dataSolo;
         public:
             //! Basic constructor
             Image(size_t newWidth, size_t newHeight, size_t newBlockSize=1);
@@ -33,5 +35,7 @@ namespace imgen{
                 \param yInit - Initial Y coordinate of the corner of where to paint the block
                 */
             void PaintBlock(size_t xInit, size_t yInit, byte R, byte G, byte B);
+
+            void encode_png(std::string filename, unsigned char * image, size_t width, size_t height);
     };
 }

@@ -1,5 +1,8 @@
-lifesim: life.o life_game.o image_gen.o main.o
-	g++ -Wall -ggdb3 -std=c++11 -I include/ -o lifesim main.o life_game.o life.o image_gen.o
+lifesim:  lodepng.o life.o life_game.o image_gen.o main.o
+	g++ -Wall -ggdb3 -std=c++11 -I include/ -o lifesim main.o life_game.o life.o image_gen.o lodepng.o
+
+lodepng.o: source/lodepng.cpp
+	g++ -Wall -ggdb3 -std=c++11 -I include/ -c source/lodepng.cpp
 
 life.o: source/life.cpp
 	g++ -Wall -ggdb3 -std=c++11 -I include/ -c source/life.cpp
