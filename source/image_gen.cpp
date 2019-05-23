@@ -75,6 +75,7 @@ namespace imgen{
     {
         std::ofstream file(fileName);
         //std::cout << "created ofstream" << std::endl;
+        /*
         file << "P3\n" << width << " " << height << "\n";
         file << "255\n";
         for (size_t i = 0; i < height; i++)
@@ -89,6 +90,7 @@ namespace imgen{
         }
         //std::cout << "closing file "<< std::endl;
         file.close();
+        */
         //char nameChar[fileName.size()];
         int buffer = 0;
         for (int i = 0; i < height; i++)

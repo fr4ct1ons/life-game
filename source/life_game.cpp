@@ -17,7 +17,6 @@ life_game::life_game(std::string filename, std::string folder, Color newDead, Co
 	file >> line;
 	file >> coll;
 	file >> live_char;
-	//file >> std::noskipws;
 
 	actual_gen = new Life(line, coll);
 	std::string buffer;
@@ -41,16 +40,6 @@ life_game::life_game(std::string filename, std::string folder, Color newDead, Co
 		}
 	}
 
-	//std::cout << actual_gen->get_nCol() << " " << actual_gen->get_nCol() << "\n";
-	
-	/*for (int i = 1; i < actual_gen->get_nLin(); i++)
-	{
-		for (int j = 1; j < actual_gen->get_nCol(); j++)
-		{
-			std::cout << actual_gen->get_biosphere(i,j).get_status() << " ";
-		}
-		std::cout << "\n";
-	}*/
 	actual_gen->set_alive();
 	generations.push_back( actual_gen->get_alive());
 	
@@ -87,20 +76,13 @@ void life_game::render( void )
 		}
 	}
 
-	//std::ofstream outf(outfile);
 	if(outstream)
 	{
-		//std::cout << "Opened file." << std::endl;
 		outstream << "Generation " << turn_count << ": \n" << *actual_gen << "\n";
-		//outf.close();
 	}
-	/*else
-	{
-		std::cout << "Could not open file. File name: " << outfile <<std::endl;
-	}*/
 	
-
-	img_gen->SaveFile(img_folder + "life_game_" + std::to_string(turn_count) + ".png");
+	if(!img_folder.empty())
+		img_gen->SaveFile(img_folder + "life_game_" + std::to_string(turn_count) + ".png");
 }
 
 bool life_game::game_over( void )
