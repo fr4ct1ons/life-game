@@ -16,8 +16,8 @@ Alternatively. you can compile it all by using the following command:
 ## Usage
 Again, on the terminal, run the program by typing:
 `./lifesim -input <inputfile> <options>`  
-Here are the following options you can use:
-
+Or
+`./lifesim -help`  
 
 ## Contact
 You can contact me at https://twitter.com/fr4ct1ons or https://github.com/fr4ct1ons/.
